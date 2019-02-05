@@ -14,13 +14,13 @@ import static com.suafata.order.RestMapping.PIZZA;
 
 @RestController
 @RequestMapping(value = PIZZA)
-public class PizzaController {
+public class OrderController {
 
-    private static Logger LOGGER = LoggerFactory.getLogger(PizzaController.class);
+    private static Logger LOGGER = LoggerFactory.getLogger(OrderController.class);
     private PizzaService pizzaService;
 
     @Autowired
-    public PizzaController(PizzaService pizzaService){
+    public OrderController(PizzaService pizzaService){
         this.pizzaService = pizzaService;
         LOGGER.info("Initializing controller");
     }

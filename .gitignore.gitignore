@@ -1,7 +1,0 @@
-#idea
-.idea
-*.iml
-
-#build
-target
-*.log
