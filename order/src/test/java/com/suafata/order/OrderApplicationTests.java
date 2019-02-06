@@ -1,16 +1,24 @@
 package com.suafata.order;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.junit.experimental.categories.Category;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+import static org.junit.Assert.assertEquals;
+
+@Category(DockerIntegrationTest.class)
 public class OrderApplicationTests {
 
 	@Test
-	public void contextLoads() {
+	public void getOrder() throws IOException {
+		String base = System.getProperty("service.url");
+		URL url = new URL(base + "");
+		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+		int response = connection.getResponseCode();
+		assertEquals(200,response);
 	}
 
 }

@@ -1,0 +1,5 @@
+FROM java:8-jre
+MAINTAINER suafata
+EXPOSE 8080
+COPY maven /maven/
+CMD java -Dspring.profiles.active="docker" -jar /maven/order.jar server /maven/docker-config.yml
