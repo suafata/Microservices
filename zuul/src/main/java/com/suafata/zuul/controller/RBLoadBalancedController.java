@@ -10,22 +10,21 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
-@RequestMapping(value = "/lb")
 @RibbonClient(name = "lb", configuration = LbConfig.class)
-public class LoadBalancedRestService {
+public class RBLoadBalancedController {
 
-    private static Logger LOGGER = LoggerFactory.getLogger(LoadBalancedRestService.class);
+    private static Logger LOGGER = LoggerFactory.getLogger(RBLoadBalancedController.class);
 
    private RestTemplate restTemplate;
 
-   public LoadBalancedRestService(@Qualifier("LoadBalancedRestTemplate")  RestTemplate restTemplate){
+   public RBLoadBalancedController(@Qualifier("LoadBalancedRestTemplate")  RestTemplate restTemplate){
        this.restTemplate = restTemplate;
-       LOGGER.info("Initializing LoadBalancedRestService");
+       LOGGER.info("Initializing RBLoadBalancedController");
    }
 
-   @RequestMapping(value ="/test")
+   @RequestMapping(value ="/lb")
    public String getOrderInstances() {
-        String response = this.restTemplate.getForObject("http://lb/test/microservice/v1/eureka/instances/order", String.class);
-        return String.format("%s, %s!", response);
+        String response = this.restTemplate.getForObject("http://lb/microservice/v1/eureka/instances/order", String.class);
+        return response;
     }
 }
